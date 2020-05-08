@@ -1,4 +1,4 @@
-window.onload = function () {
+window.onload = function() {
 	let currentIndex = 76;
 	const x = 9;
 	const y = 9;
@@ -7,6 +7,7 @@ window.onload = function () {
 	const carsRight = document.querySelectorAll(".car-right");
 	const logsRight = document.querySelectorAll(".log-right");
 	const logsLeft = document.querySelectorAll(".log-left");
+	let interval = 0;
 
 	function moveFrog(e) {
 		console.log(e.keyCode);
@@ -29,39 +30,52 @@ window.onload = function () {
 	}
 
 	function moveCars() {
-		carsRight.forEach((carRight) => moveCarsRigt(carRight));
-		carsLeft.forEach((carLeft) => moveCarsRigt(carRight));
+		carsLeft.forEach((carLeft) => moveCarLeft(carLeft));
+		carsRight.forEach((carRight) => moveCarRight(carRight));
 	}
 
-	function moveCarsRight(carRight) {
-		switch (true) {
-			case carRight.classList.contains("c1"):
-				carRight.classList.remove("c1");
-				carRight.classList.add("c2");
-			case carRight.classList.contains("c2"):
-				carRight.classList.remove("c2");
-				carRight.classList.add("c3");
-			case carRight.classList.contains("c3"):
-				carRight.classList.remove("c3");
-				carRight.classList.add("c1");
-		}
-	}
-
-	function moveCarsLeft(carLeft) {
+	//move the car left on a time loop
+	function moveCarLeft(carLeft) {
 		switch (true) {
 			case carLeft.classList.contains("c1"):
 				carLeft.classList.remove("c1");
-				carLeft.classList.add("c3");
+				carLeft.classList.add("c2");
+				break;
 			case carLeft.classList.contains("c2"):
 				carLeft.classList.remove("c2");
-				carLeft.classList.add("c1");
+				carLeft.classList.add("c3");
+				break;
 			case carLeft.classList.contains("c3"):
 				carLeft.classList.remove("c3");
-				carLeft.classList.add("c2");
+				carLeft.classList.add("c1");
+				break;
+		}
+	}
+
+	//move the car right on a time loop
+	function moveCarRight(carRight) {
+		switch (true) {
+			case carRight.classList.contains("c1"):
+				carRight.classList.remove("c1");
+				carRight.classList.add("c3");
+				break;
+			case carRight.classList.contains("c2"):
+				carRight.classList.remove("c2");
+				carRight.classList.add("c1");
+				break;
+			case carRight.classList.contains("c3"):
+				carRight.classList.remove("c3");
+				carRight.classList.add("c2");
+				break;
 		}
 	}
 
 	function moveLogs() {}
 
+	function start() {
+		interval = setInterval(moveCars, 600);
+	}
+
+	document.getElementById("newGame").addEventListener("click", start);
 	document.addEventListener("keydown", moveFrog);
 };
