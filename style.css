@@ -32,8 +32,19 @@ h3 {
 	text-align: center;
 	padding: 10px;
 }
+.start {
+	position: relative;
+}
 .start button {
 	font-size: 2rem;
+}
+.mask {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	display: none;
 }
 .grid {
 	outline: 1px solid;
@@ -61,6 +72,9 @@ h3 {
 	background: black url("car1.svg") no-repeat center;
 }
 
+.c4 {
+	background: black url("car3.svg") no-repeat center;
+}
 .l1,
 .l2,
 .l3 {
